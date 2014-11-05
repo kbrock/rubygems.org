@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150407012331) do
     t.string   "mail"
     t.string   "code"
     t.string   "bugs"
+    t.string   "changelog"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
