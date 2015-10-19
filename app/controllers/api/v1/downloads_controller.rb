@@ -1,7 +1,8 @@
 class Api::V1::DownloadsController < Api::BaseController
+  include TagHelper
   def index
     respond_to do |format|
-      format.any(:all) { render text: Download.count }
+      format.any(:all) { render text: escape_once(Download.count) }
       format.json { render json: { total: Download.count } }
       format.yaml { render text: { total: Download.count }.to_yaml }
     end

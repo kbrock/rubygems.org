@@ -1,4 +1,5 @@
 class Api::V1::RubygemsController < Api::BaseController
+  include TagHelper
   skip_before_action :verify_authenticity_token, only: [:create]
 
   before_action :authenticate_with_api_key, only: [:index, :create]
@@ -31,7 +32,7 @@ class Api::V1::RubygemsController < Api::BaseController
       request.protocol.delete("://"),
       request.host_with_port)
     gemcutter.process
-    render text: gemcutter.message, status: gemcutter.code
+    render text: escape_once(gemcutter.message), status: gemcutter.code
   end
 
   def reverse_dependencies
